@@ -70,7 +70,7 @@ class _OtpUiState extends State<OtpUi> {
                         margin: EdgeInsets.all(15),
                         width: double.infinity,
                         child: Pinput(
-                          length:4,
+                          length:6,
                           defaultPinTheme: defaultPinTheme,
                           focusedPinTheme: defaultPinTheme.copyWith(
                               decoration: defaultPinTheme.decoration!.copyWith(

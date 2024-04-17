@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:sarthi/app/global/appcolor.dart';
 import 'package:sarthi/app/ui/login_ui.dart';
 import 'package:sarthi/app/ui/otp.dart';
@@ -54,21 +55,35 @@ class _ForgotPinState extends State<ForgotPin> {
                     TextStyle(color: appcolor.black,
                       fontSize: 14,),),
                     SizedBox(height: 5,),
-                    TextFormField(
-                      //controller: _provider.password,
-                      obscureText: false,
+                    TextField(
+                      keyboardType: TextInputType.phone,
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(12), // Limit to 13 characters (including +91)
+                        _IndianMobileNumberFormatter(), // Format the input for Indian mobile numbers
+                      ],
                       decoration: InputDecoration(
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                        hintText: "Enter your phone number",
-                        // labelText: "Password"
+                        hintText: "+91 Enter your phone number",hintStyle: TextStyle(color: Colors.grey),
+                        prefixIcon: Icon(color: Colors.grey,Icons.phone),
+
+                        // prefixText: '+91 ', // Prefix with Indian country code
                       ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty == true) {
-                          return "Password should not be empty";
-                        }
-                        return null;
-                      },
                     ),
+                    // TextFormField(
+                    //   //controller: _provider.password,
+                    //   obscureText: false,
+                    //   decoration: InputDecoration(
+                    //     border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                    //     hintText: "Enter your phone number",
+                    //     // labelText: "Password"
+                    //   ),
+                    //   validator: (value) {
+                    //     if (value == null || value.isEmpty == true) {
+                    //       return "Password should not be empty";
+                    //     }
+                    //     return null;
+                    //   },
+                    // ),
                     Center(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -125,5 +140,21 @@ class _ForgotPinState extends State<ForgotPin> {
         ),
       ),
     );
+  }
+}
+class _IndianMobileNumberFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    // If the length of the text is 5 or 9 (excluding '+91 '), add a space
+    if (newValue.text.length == 5 || newValue.text.length == 9) {
+      return newValue.copyWith(
+        text: '${newValue.text} ', // Add a space
+        selection: TextSelection.collapsed(
+          offset: newValue.selection.end + 1, // Move cursor after the added space
+        ),
+      );
+    }
+    return newValue; // Return the new value as is
   }
 }

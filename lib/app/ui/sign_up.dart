@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:sarthi/app/global/appcolor.dart';
 import 'package:sarthi/app/ui/forgot_pin.dart';
 import 'package:sarthi/app/ui/login_ui.dart';
@@ -11,6 +12,14 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController mobileController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  String errorMessage = '';
+  bool isLoading = false;
+  final emailRegex = RegExp(
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
   bool _obscureConfirmPassword =true;
   bool? isChecked = false;
   @override
@@ -34,10 +43,10 @@ class _SignUpState extends State<SignUp> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // IconButton(onPressed: () {
-                    //   Navigator.push(context, MaterialPageRoute(builder: (context) => LoginUi()));
-                    // }, icon: Icon(Icons.arrow_back_ios_rounded,color: appcolor.black)),
-                    SizedBox(height: 90,),
+                    IconButton(onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => LoginUi()));
+                    }, icon: Icon(Icons.arrow_back_ios_rounded,color: appcolor.black)),
+                    SizedBox(height: 60),
                     Center(
                       child: Column(
                        // mainAxisAlignment: MainAxisAlignment.center,
@@ -58,48 +67,79 @@ class _SignUpState extends State<SignUp> {
                     TextStyle(color: appcolor.black,
                       fontSize: 14,),),
                     SizedBox(height: 4,),
+
                     TextFormField(
                       //controller: _provider.username,
+                      controller: nameController,
                       decoration: InputDecoration(
                           border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                          hintText: "Deepak",
+                          hintText: "Deepak",hintStyle: TextStyle(color: Colors.grey),
+                        prefixIcon: Icon(
+                          Icons.person,color: Colors.grey,
+
+                        )
                           ),
-                      validator: (username) {
-                        if (username == null || username.isEmpty == true) {
-                          return "Name should not be empty";
-                        }
-                        return null;
-                      },
+                      validator: (name){
+                        if(name!.isEmpty ||
+                            !RegExp(r'^[a-z A-Z]+$').hasMatch(name!)){
+                          return "Enter correct name";
+                        }else{
+                          return null;}
+                    },
+
+                      // validator: (username) {
+                      //   if (username == null || username.isEmpty == true) {
+                      //     return "Name should not be empty";
+                      //   }
+                      //   return null;
+                      // },
                     ),
                     SizedBox(height: 10,),
                     Text('Phone Number',style:
                     TextStyle(color: appcolor.black,
                       fontSize: 14,),),
                     SizedBox(height: 4,),
-                    TextFormField(
-                      //controller: _provider.username,
-                      keyboardType: TextInputType.number,maxLength: 10,
+                    TextField(
+                      controller: mobileController,
+                      keyboardType: TextInputType.phone,
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(12), // Limit to 13 characters (including +91)
+                        _IndianMobileNumberFormatter(), // Format the input for Indian mobile numbers
+                      ],
                       decoration: InputDecoration(
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                        hintText: "+919990007778",
+                        hintText: "+91 Enter your phone number",hintStyle: TextStyle(color: Colors.grey),
+                        // prefixText: '+91 ',
+                        prefixIcon: Icon(Icons.phone,color: Colors.grey,),
                       ),
-                      validator: (username) {
-                        if (username == null || username.isEmpty == true) {
-                          return "Phone Number should not be empty";
-                        }
-                        return null;
-                      },
                     ),
-                    SizedBox(height: 5,),
+                    // TextFormField(
+                    //   //controller: _provider.username,
+                    //   keyboardType: TextInputType.number,maxLength: 10,
+                    //   decoration: InputDecoration(
+                    //     border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                    //     hintText: "+919990007778",hintStyle: TextStyle(color: Colors.grey),
+                    //   ),
+                    //     validator: (number){
+                    //       if(number!.isEmpty ||
+                    //           !RegExp(r'^[+]*[(]{0,1}[0-9}{1,4}[)]{0,1}[-\s\,/0-9]+$').hasMatch(number!)){
+                    //         return "Enter correct phone number";
+                    //       }else{
+                    //         return null;}
+                    //     },
+                    // ),
+                    // SizedBox(height: 5,),
                     Text('Email ID',style:
                     TextStyle(color: appcolor.black,
                       fontSize: 14,),),
                     SizedBox(height: 4,),
                     TextFormField(
+                      controller: emailController,
                      // controller: _provider.username,
                       decoration: InputDecoration(
                           border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                          hintText: "example@gmail.com",
+                          hintText: "example@gmail.com",hintStyle: TextStyle(color: Colors.grey),
+                        prefixIcon: Icon(Icons.email,color: Colors.grey,)
                          ),
                       validator: (username) {
                         if (username == null || username.isEmpty == true) {
@@ -114,13 +154,15 @@ class _SignUpState extends State<SignUp> {
                       fontSize: 14,),),
                     SizedBox(height: 4,),
                     TextFormField(
+                      controller: passwordController,
                       //controller: _provider.password,
-                      obscureText: true,maxLength: 10,
+                      obscureText: true,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        hintText: "@12345678",
+                        hintText: "@12345678",hintStyle: TextStyle(color: Colors.grey),
+                        prefixIcon: Icon(color: Colors.grey,Icons.lock)
                         // labelText: "Password"
                       ),
                       validator: (value) {
@@ -130,18 +172,19 @@ class _SignUpState extends State<SignUp> {
                         return null;
                       },
                     ),
-                    SizedBox(height: 5,),
+                    SizedBox(height: 10,),
                     Text('Confirm Password', style: TextStyle(color: appcolor.black, fontSize: 14)),
                     SizedBox(height: 4,),
                     TextFormField(
                       //controller: _provider.password,
-                      maxLength: 10,
+
                       obscureText: _obscureConfirmPassword,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        hintText: "Confirm Password",
+                        hintText: "Confirm Password",hintStyle: TextStyle(color: Colors.grey),
+                        prefixIcon: Icon(color: Colors.grey,Icons.lock),
                         // Add suffix icon toggle
                         suffixIcon: GestureDetector(
                           onTap: () {
@@ -216,8 +259,9 @@ class _SignUpState extends State<SignUp> {
                         Navigator.push(context, MaterialPageRoute(builder: (context) => LoginUi()));
                       }, child: Text('Login',style:
                       TextStyle(color: appcolor.blue,
-                        fontSize: 15,fontWeight: FontWeight.bold),),)
-                    ],)
+                        fontSize: 26,fontWeight: FontWeight.bold),),)
+                    ],),
+
 
 
 
@@ -235,5 +279,21 @@ class _SignUpState extends State<SignUp> {
         ),
       ),
     );
+  }
+}
+class _IndianMobileNumberFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    // If the length of the text is 5 or 9 (excluding '+91 '), add a space
+    if (newValue.text.length == 5 || newValue.text.length == 9) {
+      return newValue.copyWith(
+        text: '${newValue.text} ', // Add a space
+        selection: TextSelection.collapsed(
+          offset: newValue.selection.end + 1, // Move cursor after the added space
+        ),
+      );
+    }
+    return newValue; // Return the new value as is
   }
 }
