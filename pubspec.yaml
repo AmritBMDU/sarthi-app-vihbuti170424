@@ -36,6 +36,10 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
   country_code_picker: ^3.0.0
+  google_fonts: ^6.2.1
+  pin_code_fields: ^8.0.1
+  pinput: ^4.0.0
+
 
 
 dev_dependencies:
@@ -76,7 +80,13 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
+#  fonts:
+#    - family: MyCustomFont
+#      fonts:
+#        - asset: assests/fonts/MyCustomFont-Jost-ExtraBold-BF63dc52d09ee91.ttf
+##        - asset: fonts/MyCustomFont-Bold.ttf
+#          weight: 800
+
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf
@@ -88,5 +98,3 @@ flutter:
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages

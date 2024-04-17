@@ -40,20 +40,20 @@ class _ForgotPinState extends State<ForgotPin> {
                         children: [
                           Text('Forgot Password',style:
                           TextStyle(color: appcolor.blue,fontWeight: FontWeight.bold,
-                              fontSize: 40),),
-                          Text('Enter your Phone number to recover',style:
-                          TextStyle(
-                              fontSize: 24),),
-                          Text('your password',style:
-                          TextStyle(
-                              fontSize: 24),),
+                              fontSize: 28),),
+                          SizedBox(height: 10,),
+                          Text('Enter your Phone number to recover \n                   your password',
+                            style: TextStyle(
+                              fontSize: 16),),
+
                         ],
                       ),
                     ),
                     SizedBox(height: 15,),
                     Text('Phone Number',style:
                     TextStyle(color: appcolor.black,
-                      fontSize: 22,),),
+                      fontSize: 14,),),
+                    SizedBox(height: 5,),
                     TextFormField(
                       //controller: _provider.password,
                       obscureText: false,
@@ -80,7 +80,7 @@ class _ForgotPinState extends State<ForgotPin> {
 
                           }, child: Text('Back to Login',style:
                           TextStyle(color: appcolor.blue,fontWeight: FontWeight.bold,
-                              fontSize: 20),),),
+                              fontSize: 14),),),
                           SizedBox(height: 15,),
                           Row(
                             children: [
@@ -96,7 +96,7 @@ class _ForgotPinState extends State<ForgotPin> {
                                     },
                                     child: Text(
                                       "Send Code",
-                                      style: TextStyle(color: Colors.white,fontSize:20 ),
+                                      style: TextStyle(color: Colors.white,fontSize:14 ),
                                     ),
                                     style: ButtonStyle(
                                         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -113,6 +113,7 @@ class _ForgotPinState extends State<ForgotPin> {
                         ],
                       ),
                     ),
+
                   ],
                 ),
 

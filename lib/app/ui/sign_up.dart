@@ -34,25 +34,30 @@ class _SignUpState extends State<SignUp> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    IconButton(onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => LoginUi()));
-                    }, icon: Icon(Icons.arrow_back_ios_rounded,color: appcolor.black)),
-                    SizedBox(height: 70,),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text('Create an Account',style:
-                        TextStyle(color: appcolor.blue,fontWeight: FontWeight.bold,
-                            fontSize: 40),),
-                        Text('Welcome Back! Please Enter Your Details',style:
-                        TextStyle(
-                            fontSize: 24),),
-                      ],
+                    // IconButton(onPressed: () {
+                    //   Navigator.push(context, MaterialPageRoute(builder: (context) => LoginUi()));
+                    // }, icon: Icon(Icons.arrow_back_ios_rounded,color: appcolor.black)),
+                    SizedBox(height: 90,),
+                    Center(
+                      child: Column(
+                       // mainAxisAlignment: MainAxisAlignment.center,
+                        //crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text('Create an Account',style:
+                          TextStyle(color: appcolor.blue,fontWeight: FontWeight.bold,
+                              fontSize: 28),),
+                          SizedBox(height: 4,),
+                          Text('Welcome Back! Please Enter Your Details',style:
+                          TextStyle(
+                              fontSize: 16),),
+                        ],
+                      ),
                     ),
                     SizedBox(height: 20,),
                     Text('Name',style:
                     TextStyle(color: appcolor.black,
-                      fontSize: 22,),),
+                      fontSize: 14,),),
+                    SizedBox(height: 4,),
                     TextFormField(
                       //controller: _provider.username,
                       decoration: InputDecoration(
@@ -69,7 +74,8 @@ class _SignUpState extends State<SignUp> {
                     SizedBox(height: 10,),
                     Text('Phone Number',style:
                     TextStyle(color: appcolor.black,
-                      fontSize: 22,),),
+                      fontSize: 14,),),
+                    SizedBox(height: 4,),
                     TextFormField(
                       //controller: _provider.username,
                       keyboardType: TextInputType.number,maxLength: 10,
@@ -84,10 +90,11 @@ class _SignUpState extends State<SignUp> {
                         return null;
                       },
                     ),
-                    SizedBox(height: 10,),
+                    SizedBox(height: 5,),
                     Text('Email ID',style:
                     TextStyle(color: appcolor.black,
-                      fontSize: 22,),),
+                      fontSize: 14,),),
+                    SizedBox(height: 4,),
                     TextFormField(
                      // controller: _provider.username,
                       decoration: InputDecoration(
@@ -104,12 +111,15 @@ class _SignUpState extends State<SignUp> {
                     SizedBox(height: 10,),
                     Text('Password',style:
                     TextStyle(color: appcolor.black,
-                      fontSize: 22,),),
+                      fontSize: 14,),),
+                    SizedBox(height: 4,),
                     TextFormField(
                       //controller: _provider.password,
                       obscureText: true,maxLength: 10,
                       decoration: InputDecoration(
-                        border: OutlineInputBorder(),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                         hintText: "@12345678",
                         // labelText: "Password"
                       ),
@@ -120,14 +130,17 @@ class _SignUpState extends State<SignUp> {
                         return null;
                       },
                     ),
-                    SizedBox(height: 10,),
-                    Text('Confirm Password', style: TextStyle(color: appcolor.black, fontSize: 22)),
+                    SizedBox(height: 5,),
+                    Text('Confirm Password', style: TextStyle(color: appcolor.black, fontSize: 14)),
+                    SizedBox(height: 4,),
                     TextFormField(
                       //controller: _provider.password,
                       maxLength: 10,
                       obscureText: _obscureConfirmPassword,
                       decoration: InputDecoration(
-                        border: OutlineInputBorder(),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                         hintText: "Confirm Password",
                         // Add suffix icon toggle
                         suffixIcon: GestureDetector(
@@ -161,7 +174,7 @@ class _SignUpState extends State<SignUp> {
                           }),
                       Text('Term & Condition',style:
                       TextStyle(color: appcolor.blue,
-                        fontSize: 22,),),
+                        fontSize: 16,),),
 
                     ],),
                     Row(
@@ -180,7 +193,7 @@ class _SignUpState extends State<SignUp> {
                               },
                               child: Text(
                                 "Sign Up",
-                                style: TextStyle(color: Colors.white,fontSize:20 ),
+                                style: TextStyle(color: Colors.white,fontSize:14 ),
                               ),
                               style: ButtonStyle(
                                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -198,12 +211,12 @@ class _SignUpState extends State<SignUp> {
                       children: [
                       Text('Have an account?',style:
                       TextStyle(color: appcolor.blue,
-                        fontSize: 22,),),
+                        fontSize: 15,),),
                       TextButton(onPressed: () {
                         Navigator.push(context, MaterialPageRoute(builder: (context) => LoginUi()));
                       }, child: Text('Login',style:
                       TextStyle(color: appcolor.blue,
-                        fontSize: 28,fontWeight: FontWeight.bold),),)
+                        fontSize: 15,fontWeight: FontWeight.bold),),)
                     ],)
 
 

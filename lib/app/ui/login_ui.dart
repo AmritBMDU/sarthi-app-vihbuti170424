@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:sarthi/app/global/appcolor.dart';
 import 'package:sarthi/app/ui/forgot_pin.dart';
 import 'package:sarthi/app/ui/sign_up.dart';
@@ -29,28 +30,35 @@ class _LoginUiState extends State<LoginUi> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Form(
-                child: Column(
+                child: Column( mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(height: 70,),
-                  Text('SARTHI',style:
-                  TextStyle(color: appcolor.blue,fontWeight: FontWeight.bold,
-                      fontSize: 80),),
-                  Text('सारथी',style:
+                  SizedBox(height: 140,),
+                  Text(
+                    'SARTHI',
+                    style: GoogleFonts.jost(
+                      textStyle: TextStyle(
+                        color: appcolor.blue, // assuming appcolor is defined somewhere
+                        fontWeight: FontWeight.w800,
+                        fontSize: 50,
+                      ),),
+                  ),
+                  Text('सारथी',style:GoogleFonts.tiroDevanagariHindi( textStyle :
                   TextStyle(color: appcolor.black,
-                      fontSize: 80),),
+                      fontSize: 48),),),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('Login',style:
                       TextStyle(color: appcolor.black,
-                          fontSize: 55,fontWeight: FontWeight.w500),),
+                          fontSize: 28,fontWeight: FontWeight.w500),),
                       SizedBox(height: 15,),
                       Text('Mobile Number',style:
                       TextStyle(color: appcolor.black,
-                        fontSize: 22,),),
+                        fontSize: 14,),),
+                      SizedBox(height: 5,),
                       TextFormField(
             //controller: _provider.password,
-                        obscureText: false,
+                        obscureText: false,keyboardType: TextInputType.number,maxLength: 10,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                           hintText: "Enter your phone number",
@@ -63,15 +71,16 @@ class _LoginUiState extends State<LoginUi> {
                           return null;
                         },
                       ),
-                      SizedBox(height: 15,),
+                      //SizedBox(height: 5,),
                       Text('Password',style:
                       TextStyle(color: appcolor.black,
-                        fontSize: 22,)),
+                        fontSize: 14,)),
+                      SizedBox(height: 5,),
                       TextFormField(
             //controller: _provider.password,
-                        obscureText: true,
+                        obscureText: true,keyboardType: TextInputType.number,
                         decoration: InputDecoration(
-                          border: OutlineInputBorder(),
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                           hintText: "Type Password here",
             // labelText: "Password"
                         ),
@@ -93,13 +102,13 @@ class _LoginUiState extends State<LoginUi> {
 
                       }, child: Text('Register with us !',style:
                       TextStyle(color: appcolor.blue,
-                          fontSize: 20),),),
+                          fontSize: 14),),),
                       TextButton(onPressed: () {
                         Navigator.push(context, MaterialPageRoute(builder: (context)=> ForgotPin()));
 
                       }, child: Text('Forgot Password ?',style:
                       TextStyle(color: appcolor.blue,
-                          fontSize: 20),),),
+                          fontSize: 14),),),
                     ],),
                   SizedBox(height: 15,),
                   Row(
@@ -116,7 +125,7 @@ class _LoginUiState extends State<LoginUi> {
                             },
                             child: Text(
                               "Continue",
-                              style: TextStyle(color: Colors.white,fontSize:20 ),
+                              style: TextStyle(color: Colors.white,fontSize:14 ),
                             ),
                             style: ButtonStyle(
                                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -126,10 +135,8 @@ class _LoginUiState extends State<LoginUi> {
                                 ),
                                 backgroundColor:
                                 MaterialStateProperty.all(appcolor.blue)),
+                          )),],),
 
-                          )),
-                    ],
-                  ),
 
 
                 ],),

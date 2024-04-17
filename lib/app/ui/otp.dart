@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pinput/pinput.dart';
 import 'package:sarthi/app/global/appcolor.dart';
 import 'package:sarthi/app/home/homepage.dart';
 
@@ -13,6 +14,15 @@ class OtpUi extends StatefulWidget {
 class _OtpUiState extends State<OtpUi> {
   @override
   Widget build(BuildContext context) {
+    final defaultPinTheme = PinTheme(
+      width: 56,
+      height: 60,
+      textStyle: TextStyle(fontSize: 20,color: appcolor.black,fontWeight: FontWeight.bold),
+      decoration:  BoxDecoration(
+        color: appcolor.miniBlue,borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: Colors.transparent),
+      ),
+    );
 
     return SafeArea(
       child: Container(
@@ -39,23 +49,38 @@ class _OtpUiState extends State<OtpUi> {
                         children: [
                           Text('OTP Authentication',style:
                           TextStyle(color: appcolor.black,fontWeight: FontWeight.bold,
-                              fontSize: 30),),
-                          SizedBox(height: 10,),
+                              fontSize: 22),),
+                          SizedBox(height: 8,),
                           Text('An authentication code sent to',style:
                           TextStyle(
-                              fontSize: 24),),
+                              fontSize: 16),),
 
                           Text('your Phone Number',style:
                           TextStyle(color: appcolor.black,
-                              fontSize: 24),),
+                              fontSize: 16),),
                           SizedBox(height: 30,),
                         ],
                       ),
                     ),
                     Text('Enter OTP',style:
                     TextStyle(color: appcolor.black,
-                        fontSize: 24),),
-                    SizedBox(height: 10,),
+                        fontSize: 18),),
+                    Center(
+                      child: Container(
+                        margin: EdgeInsets.all(15),
+                        width: double.infinity,
+                        child: Pinput(
+                          length:4,
+                          defaultPinTheme: defaultPinTheme,
+                          focusedPinTheme: defaultPinTheme.copyWith(
+                              decoration: defaultPinTheme.decoration!.copyWith(
+                                  border: Border.all(color: appcolor.miniBlue)
+                              )
+                          ),
+                          onCompleted: (pin) => debugPrint(pin),
+                        ),
+                      ),
+                    ),
                     Center(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -66,7 +91,7 @@ class _OtpUiState extends State<OtpUi> {
                             children: [
                               Text('Did not recive code.',style:
                               TextStyle(color: appcolor.black,
-                                  fontSize: 20),),
+                                  fontSize: 16),),
                               TextButton(onPressed: () {
                                 Navigator.push(context, MaterialPageRoute(
                                     builder: (context)=> HomePage()));
@@ -76,7 +101,7 @@ class _OtpUiState extends State<OtpUi> {
                                   fontSize: 20),),),
                             ],
                           ),
-                          SizedBox(height: 40,),
+                          SizedBox(height: 10,),
                           Row(
                             children: [
                               Expanded(
@@ -91,7 +116,7 @@ class _OtpUiState extends State<OtpUi> {
                                     },
                                     child: Text(
                                       "Submit",
-                                      style: TextStyle(color: Colors.white,fontSize:20 ),
+                                      style: TextStyle(color: Colors.white,fontSize:14 ),
                                     ),
                                     style: ButtonStyle(
                                         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -105,6 +130,9 @@ class _OtpUiState extends State<OtpUi> {
                                   )),
                             ],
                           ),
+
+
+
                         ],
                       ),
                     ),
