@@ -264,68 +264,73 @@ class _LoginUiState extends State<LoginUi> {
                   //   TextStyle(color: appcolor.blue,
                   //       fontSize: 18,fontWeight: FontWeight.bold),),)
                   // ],),
-                  Row(mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Helpline No:',style:
-                      TextStyle(color: appcolor.blue,
-                        fontSize: 15,),),
-                      TextButton(onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => LoginUi()));
-                      }, child: Text(' 91 8598765443',style:
-                      TextStyle(color: appcolor.black,
-                          fontSize: 18,fontWeight: FontWeight.bold),),)
-                    ],),
-                  Row(mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Email ID-',style:
-                      TextStyle(color: appcolor.blue,
-                        fontSize: 15,),),
-                      TextButton(onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => LoginUi()));
-                      }, child: Text('deep@1234gmail.com',style:
-                      TextStyle(color: appcolor.black,
-                          fontSize: 18,fontWeight: FontWeight.bold),),)
-                    ],),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      ListTile(
-                        title: RichText(
-                          text: TextSpan(
-                            children: [
-                              TextSpan(
-                                text: 'Helpline No: ',
-                                style: TextStyle(color: Colors.blue),
-                              ),
-                              TextSpan(
-                                text: '91 8598765443',
-                                style: TextStyle(color: Colors.black),
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () => _launchPhone('+918598765443'),
-                              ),
-                            ],
+                  // Row(mainAxisAlignment: MainAxisAlignment.center,
+                  //   children: [
+                  //     Text('Helpline No:',style:
+                  //     TextStyle(color: appcolor.blue,
+                  //       fontSize: 15,),),
+                  //     TextButton(onPressed: () {
+                  //       Navigator.push(context, MaterialPageRoute(builder: (context) => LoginUi()));
+                  //     }, child: Text(' 91 8598765443',style:
+                  //     TextStyle(color: appcolor.black,
+                  //         fontSize: 18,fontWeight: FontWeight.bold),),)
+                  //   ],),
+                  // Row(mainAxisAlignment: MainAxisAlignment.center,
+                  //   children: [
+                  //     Text('Email ID-',style:
+                  //     TextStyle(color: appcolor.blue,
+                  //       fontSize: 15,),),
+                  //     TextButton(onPressed: () {
+                  //       Navigator.push(context, MaterialPageRoute(builder: (context) => LoginUi()));
+                  //     }, child: Text('deep@1234gmail.com',style:
+                  //     TextStyle(color: appcolor.black,
+                  //         fontSize: 18,fontWeight: FontWeight.bold),),)
+                  //   ],),
+                  Container(
+                    margin: EdgeInsets.symmetric( horizontal: 60),
+                    child: Column(
+                      // crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+
+                        ListTile(
+                          title: RichText(
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'Helpline No: ',
+                                  style: TextStyle(color: appcolor.blue),
+                                ),
+                                TextSpan(
+                                  text: '91 8598765443',
+                                  style: TextStyle(color: Colors.black),
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () => _launchPhone('+918598765443'),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      ListTile(
-                        title: RichText(
-                          text: TextSpan(
-                            children: [
-                              TextSpan(
-                                text: 'Email ID: ',
-                                style: TextStyle(color: Colors.blue),
-                              ),
-                              TextSpan(
-                                text: 'deep@1234gmail.com',
-                                style: TextStyle(color: Colors.black),
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () => _launchEmail('deep@1234gmail.com'),
-                              ),
-                            ],
+                        ListTile(
+                          title: RichText(
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'Email ID: ',
+                                  style: TextStyle(color:appcolor.blue),
+                                ),
+                                TextSpan(
+                                  text: 'deep@1234gmail.com',
+                                  style: TextStyle(color: Colors.black),
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () => _launchEmail('deep@1234gmail.com'),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
 
 
